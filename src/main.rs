@@ -1,9 +1,10 @@
+pub mod github;
+use github::push_to_github;
 use js_sys::Function;
 use leptos::prelude::*;
 use wasm_bindgen::{JsCast, JsValue};
 use web_sys::{console, window}; // สำหรับ HTTP request
 
-pub mod github;
 
 #[component]
 fn App() -> impl IntoView {
@@ -25,11 +26,11 @@ fn App() -> impl IntoView {
                 console::log_1(&display.into());
 
                 // เรียก API สำหรับส่งข้อมูลไป backend
-                // wasm_bindgen_futures::spawn_local(async move {
-                //     if let Err(err) = push_to_github(&path, &content).await {
-                //         console::log_1(&format!("Error pushing to GitHub: {}", err).into());
-                //     }
-                // });
+                wasm_bindgen_futures::spawn_local(async move {
+                    if let Err(err) = push_to_github(&path, &content).await {
+                        console::log_1(&format!("Error pushing to GitHub: {}", err).into());
+                    }
+                });
             } else {
                 console::log_1(&"getMarkdownValue is not a function".into());
             }
