@@ -8,7 +8,8 @@ pub async fn push_to_github(path: &str, content: &str) -> Result<(), Box<dyn std
     let token = env::var("GITHUB_TOKEN")?;
     let repo = env::var("GITHUB_REPO")?;
     let branch = env::var("GITHUB_BRANCH")?;
-    log_1(&token.clone().into());
+    let display = format!("test {}",token);
+    log_1(&display.into());
     log_1(&repo.clone().into());
     log_1(&branch.clone().into());
     let api_url: String = format!("https://api.github.com/repos/{}/contents/{}", repo, path);
