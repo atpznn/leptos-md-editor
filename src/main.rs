@@ -7,7 +7,6 @@ use leptos::prelude::*;
 use wasm_bindgen::{JsCast, JsValue};
 use web_sys::{console, window}; // สำหรับ HTTP request
 
-
 #[component]
 fn App() -> impl IntoView {
     let (count, set_count) = signal(0);
@@ -23,13 +22,15 @@ fn App() -> impl IntoView {
                 // console::log_1(&result);
                 // เรียก API สำหรับ push ไฟล์ไป GitHub
                 let path = format!("src/content/blog/{}.md", "your_filename"); // คุณต้องตั้งชื่อไฟล์
-                let content = format!("{:?}", result);
+                let content = format!("{:?}", result.as_string());
                 let display = format!("{} {}", path, content);
                 console::log_1(&display.into());
+                console::log_1(&"test111".into());
+
                 let token = env::var("GITHUB_TOKEN").unwrap();
                 let repo = env::var("GITHUB_REPO").unwrap();
                 let branch = env::var("GITHUB_BRANCH").unwrap();
-                let display1 = format!("test {}",token);
+                let display1 = format!("test {}", token);
                 console::log_1(&display1.into());
                 console::log_1(&repo.clone().into());
                 console::log_1(&branch.clone().into());
