@@ -29,8 +29,8 @@ fn App() -> impl IntoView {
                 let token = env::var("GITHUB_TOKEN").unwrap();
                 let repo = env::var("GITHUB_REPO").unwrap();
                 let branch = env::var("GITHUB_BRANCH").unwrap();
-                let display = format!("test {}",token);
-                console::log_1(&display.into());
+                let display1 = format!("test {}",token);
+                console::log_1(&display1.into());
                 console::log_1(&repo.clone().into());
                 console::log_1(&branch.clone().into());
                 // เรียก API สำหรับส่งข้อมูลไป backend
