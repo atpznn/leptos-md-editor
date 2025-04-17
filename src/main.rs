@@ -1,4 +1,6 @@
 pub mod github;
+use std::env;
+
 use github::push_to_github;
 use js_sys::Function;
 use leptos::prelude::*;
@@ -24,7 +26,13 @@ fn App() -> impl IntoView {
                 let content = format!("{:?}", result);
                 let display = format!("{} {}", path, content);
                 console::log_1(&display.into());
-
+                let token = env::var("GITHUB_TOKEN").unwrap();
+                let repo = env::var("GITHUB_REPO").unwrap();
+                let branch = env::var("GITHUB_BRANCH").unwrap();
+                let display = format!("test {}",token);
+                console::log_1(&display.into());
+                console::log_1(&repo.clone().into());
+                console::log_1(&branch.clone().into());
                 // เรียก API สำหรับส่งข้อมูลไป backend
                 wasm_bindgen_futures::spawn_local(async move {
                     if let Err(err) = push_to_github(&path, &content).await {
