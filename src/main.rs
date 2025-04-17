@@ -26,7 +26,9 @@ fn App() -> impl IntoView {
                 let display = format!("{} {}", path, content);
                 console::log_1(&display.into());
                 console::log_1(&"test111".into());
-
+                let token = std::env::var("GITHUB_TOKEN").unwrap();
+                let display1 = format!("test {}", token);
+                console::log_1(&display1.into());
                 let token = env::var("GITHUB_TOKEN").unwrap();
                 let repo = env::var("GITHUB_REPO").unwrap();
                 let branch = env::var("GITHUB_BRANCH").unwrap();
