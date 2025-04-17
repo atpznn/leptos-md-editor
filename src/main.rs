@@ -56,7 +56,7 @@ fn App() -> impl IntoView {
             class="text-mycolor-1"
             on:click=move |_| set_count.set(3)
         >
-            "Click me: "
+            "Click me11111111111: "
             {count}
         </button>
         <p>
